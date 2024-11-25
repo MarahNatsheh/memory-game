@@ -1,0 +1,1 @@
+<a href="https://iconscout.com/lottie-animations/winking-face" class="text-underline font-size-sm" target="_blank">Winking Face</a> by <a href="https://iconscout.com/contributors/rejuve" class="text-underline font-size-sm">Rejuv</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>
