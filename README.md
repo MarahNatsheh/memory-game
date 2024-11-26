@@ -5,13 +5,13 @@ Welcome to Memory Game, a fun, interactive challenge that will test your memory 
 ## 📜 Table of Contents
 
 - 🌟 [Introduction](#-introduction) 
-- 🕹️ [How to Play](#how-to-play)
-- 🎨 [Features](#features)
-- ⚙️ [Installation and setup](#installation-and-setup)
-- 🤝 [Contributing](#contributing)
-- 🌍 [Live Demo](#live-demo)
-- 🧩 [Behind the Code](#behind-the-code)
-- 🛠 [Code walkthrough](#code-walkthrough)
+- 🕹️ [How to Play](#-how-to-play)
+- 🎨 [Features](#-features)
+- ⚙️ [Installation and setup](#-installation-and-setup)
+- 🤝 [Contributing](#-contributing)
+- 🌍 [Live Demo](#-live-demo)
+- 🧩 [Behind the Code](#-behind-the-code)
+- 🛠 [Code walkthrough](#-code-walkthrough)
 
 ## 🌟 Introduction
 
