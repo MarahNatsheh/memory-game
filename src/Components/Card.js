@@ -1,6 +1,6 @@
 import React from 'react';
-import '../App.css'; // Ensure this file has necessary styles for the card flipping effect
-
+import '../App.css'; 
+import '../Animations.css'
 const Card = ({ card, flipped, disabled, handleChoice }) => {
   const handleClick = () => {
     if (!disabled) {

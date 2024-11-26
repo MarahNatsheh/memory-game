@@ -1,13 +1,12 @@
 import React from 'react';
 import Card from './Card';
-import '../App.css'; // Include styling for the grid
-
+import '../App.css'; 
 const Grid = ({ cards, choiceOne, choiceTwo, disabled, handleChoice }) => {
   return (
     <div className="grid-container">
       {cards.map((card) => (
         <Card
-          key={card.id} // Unique key for React rendering
+          key={card.id} 
           card={card}
           flipped={card === choiceOne || card === choiceTwo || card.matched}
           disabled={disabled}

@@ -3,9 +3,10 @@ import Header from './Components/Header';
 import Grid from './Components/Grid';
 import { cardImages } from './Components/Images';
 import { ReactComponent as TrophyIcon } from './trophy-animation.svg';
-import './App.css';
 import Loading from './Components/Loading';
 import StarBackground from './Components/StarBackground';
+import './App.css';
+import './Animations.css';
 
 const App = () => {
 
@@ -18,10 +19,9 @@ const App = () => {
   const [winner, setWinner] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [loading, setLoading] = useState(true); 
-  const [score, setScore] = useState(0); // To track the score
-  const [timeLeft, setTimeLeft] = useState(90); // 5 minutes in seconds
-  const progress = (timeLeft / 90) * 100; // Calculate progress percentage (5 minutes = 300 seconds)
-
+  const [score, setScore] = useState(0); 
+  const [timeLeft, setTimeLeft] = useState(90); 
+  const progress = (timeLeft / 90) * 100; 
 
   const shuffleCards = () => {
     const shuffled = [...cardImages, ...cardImages]
@@ -34,11 +34,10 @@ const App = () => {
     setDisabled(false);
     setWinner(false);
     setGameOver(false);
-    setScore(0); // Reset score
-    setTimeLeft(90); // Reset timer to 5 minutes
+    setScore(0); 
+    setTimeLeft(90);
     setLoading(false);
   };
-  
 
   const handleChoice = (card) => {
     if (!disabled) {
@@ -66,26 +65,24 @@ const App = () => {
               : card
           )
         );
-        setScore((prevScore) => prevScore + 1); // Increment score by 10 for each match
+        setScore((prevScore) => prevScore + 1); 
         setTimeout(() => {
           setShuffledCards((prevCards) =>
             prevCards.map((card) =>
               card.highlight ? { ...card, highlight: false } : card
             )
           );
-          backToDefault(false); // Don't increment turns since a match occurred
+          backToDefault(false); 
         }, 1500);
       } else {
-        // Default logic for unmatched cards
         setTimeout(() => {
-          backToDefault(true); // Increment turns since it was not a match
-        }, 1000); // Delay to allow the user to see the cards
+          backToDefault(true); 
+        }, 1000); 
       }
     }
     
   }, [choiceOne, choiceTwo]);
   
-
   useEffect(() => {
     if (shuffledCards.length > 0) {
       const allMatched = shuffledCards.every((card) => card.matched);
@@ -105,10 +102,10 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    setLoading(true); // Show loading screen initially
+    setLoading(true); 
     setTimeout(() => {
       shuffleCards();
-    }, 2000); // Simulate loading delay
+    }, 2000); 
   }, []);
 
   useEffect(() => {
@@ -117,94 +114,80 @@ const App = () => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
   
-      return () => clearInterval(timer); // Cleanup the interval
+      return () => clearInterval(timer); 
     } else if (timeLeft === 0) {
-      setGameOver(true); // End the game if the timer reaches 0
+      setGameOver(true); 
       setDisabled(true);
     }
   }, [timeLeft, winner, gameOver]);
   
-
-  return (
-    <div className="App">
-      <StarBackground />
-      {loading ? (
-        <Loading />
-      ) : (
+return (
+<div className="App">
+  <StarBackground />
+  {loading ? (
+    <Loading />
+  ) : (
+    <>
+      <Header turns={turns} onShuffle={shuffleCards} />
+      <div className="main-container">
+        {/* Timer */}
+        <div className="timer">
+          <svg className="progress-circle" viewBox="0 0 36 36">
+            <path
+              className="progress-circle-bg"
+              d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+            <path
+              className="progress-circle-bar"
+              d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831"
+              strokeDasharray="100"
+              strokeDashoffset={100 - progress}
+            />
+          </svg>
+          <div className="timer-text">
+            <h3>{Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</h3>
+          </div>
+        </div>
+          {!winner && !gameOver ? (
+            <Grid
+              cards={shuffledCards}
+              choiceOne={choiceOne}
+              choiceTwo={choiceTwo}
+              disabled={disabled}
+              handleChoice={handleChoice}
+            />
+          ) : null}
+        <div className="score">
+          <div className="score-circle">
+            <h3>{score}</h3>
+          </div>
+        </div>
+      </div>
+      {gameOver && !winner && (
         <>
-          <Header turns={turns} onShuffle={shuffleCards} />
-          <div className="main-container">
-            {/* Timer */}
-            <div className="timer">
-              <svg className="progress-circle" viewBox="0 0 36 36">
-                <path
-                  className="progress-circle-bg"
-                  d="M18 2.0845
-                  a 15.9155 15.9155 0 0 1 0 31.831
-                  a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-                <path
-                  className="progress-circle-bar"
-                  d="M18 2.0845
-                  a 15.9155 15.9155 0 0 1 0 31.831
-                  a 15.9155 15.9155 0 0 1 0 -31.831"
-                  strokeDasharray="100"
-                  strokeDashoffset={100 - progress}
-                />
-              </svg>
-              <div className="timer-text">
-                <h3>{Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</h3>
-              </div>
-            </div>
-  
-            {/* Grid */}
-          
-              {!winner && !gameOver ? (
-                <Grid
-                  cards={shuffledCards}
-                  choiceOne={choiceOne}
-                  choiceTwo={choiceTwo}
-                  disabled={disabled}
-                  handleChoice={handleChoice}
-                />
-              ) : null}
-          
-  
-            {/* Score */}
-            <div className="score">
-              <div className="score-circle">
-                <h3>{score}</h3>
-              </div>
+          <h2>Game Over! Better luck next time 😢 Press "New game" to play again.</h2>
+          <div id="tudo">
+            <div className="gameover">
+              <p>GAME</p>
+              <p>OVER</p>
             </div>
           </div>
-  
-          {/* Show "Game Over" message */}
-          {gameOver && !winner && (
-            <>
-              <h2>Game Over! Better luck next time 😢 Press "New game" to play again.</h2>
-              <div id="tudo">
-                <div className="gameover">
-                  <p>GAME</p>
-                  <p>OVER</p>
-                </div>
-              </div>
-            </>
-          )}
-  
-          {/* Show "Winner" message */}
-          {winner && (
-            <>
-              <h2>Congratulations! You've won the game!</h2>
-              <TrophyIcon className="trophy-animation" />
-            </>
-          )}
         </>
       )}
-    </div>
-  );
-  
-   
-  
+      {winner && (
+        <>
+          <h2>Congratulations! You've won the game!</h2>
+          <TrophyIcon className="trophy-animation" />
+        </>
+      )}
+    </>
+  )}
+</div>
+); 
 };
 
 export default App;

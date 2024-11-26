@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import '../Animations.css';
 
 const Loading = () => (
   <div className="loading">
