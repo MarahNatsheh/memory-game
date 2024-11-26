@@ -63,10 +63,8 @@ You can check out the live demo of the Memory Game [here](https://marahnatsheh.g
 ## 🧩 Behind the Code
 
 - **Frontend**: React
-- **Backend**: Node.js
-- **Database**: MongoDB
+- **Programming Languages**: JavaScript , CSS
 - **Deployment**: GitHub Pages
-- **Testing**: Jest 
 
 ## 🛠 Code Walkthrough
 1. **App Component**  
