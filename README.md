@@ -153,6 +153,6 @@ You can check out the live demo of the Memory Game [here](https://marahnatsheh.g
      Shows an encouraging "Game Over" message and prompts the user to try again.
 
 
-Thank you for checking out my Memory Game. I hope you enjoy playing as much as I enjoyed building it.
 ## 🎉 Enjoy playing Memory Game!
+Thank you for checking out my Memory Game. I hope you enjoy playing as much as I enjoyed building it.
 
